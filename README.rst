@@ -35,8 +35,8 @@ the builtin support of mod_wsgi express for New Relic. See the mod_wsgi
 express documentation for more information on starting it with New Relic
 support enabled.
 
-Using plugin with a standard mod_wsgi installation
---------------------------------------------------
+Using the plugin with a standard mod_wsgi installation
+------------------------------------------------------
 
 If you have installed mod_wsgi as an Apache module direct into your Apache
 installation, or have installed an operating system binary package, and are
