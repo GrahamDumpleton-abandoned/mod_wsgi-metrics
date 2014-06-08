@@ -125,5 +125,5 @@ reported data will then appear under the application name used.
 
 .. [1] Disclaimer: I work for New Relic and am the primary developer of
        the Python agent. So of course it is awesome. The work I do on
-       this plugin for the New Relic platform is independent of any work
-       I do for New Relic and is done on my own time though. :-)
+       this mod_wsgi plugin for the New Relic platform is independent of
+       any work I do for New Relic and is done on my own time though. :-)
