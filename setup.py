@@ -32,6 +32,7 @@ setup_kwargs = dict(
     ],
     packages = ['mod_wsgi', 'mod_wsgi.metrics', 'mod_wsgi.metrics.newrelic'],
     package_dir = {'mod_wsgi': 'src'},
+    install_requires=['psutil >= 2.0.0'],
 )
 
 setup(**setup_kwargs)
