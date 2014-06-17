@@ -52,9 +52,9 @@ def json_encode(obj, **kwargs):
 def json_decode(s, **kwargs):
     return json.loads(s, **kwargs)
 
-# Platform plugin interface.
+# Platform plugin client.
 
-class Interface(object):
+class Client(object):
 
     class NetworkInterfaceException(Exception): pass
     class DiscardDataForRequest(NetworkInterfaceException): pass
@@ -90,7 +90,7 @@ class Interface(object):
             _logger.exception('Error encoding data for JSON payload '
                     'with payload of %r.', payload)
 
-            raise Interface.DiscardDataForRequest(str(exc))
+            raise Client.DiscardDataForRequest(str(exc))
 
         if len(data) > 64*1024:
             headers['Content-Encoding'] = 'deflate'
@@ -104,7 +104,7 @@ class Interface(object):
             content = response.read()
 
         except httplib.HTTPException as exc:
-            raise Interface.RetryDataForRequest(str(exc))
+            raise Client.RetryDataForRequest(str(exc))
 
         finally:
             connection.close()
@@ -123,13 +123,13 @@ class Interface(object):
                     'payload of %r with response of %r.', headers, data,
                     content)
 
-            raise Interface.DiscardDataForRequest()
+            raise Client.DiscardDataForRequest()
 
         elif response.status == 403:
             _logger.error('Data collector is indicating that the license '
                     'key %r is not valid.', license_key)
 
-            raise Interface.DiscardDataForRequest()
+            raise Client.DiscardDataForRequest()
 
         elif response.status == 413:
             _logger.warning('Data collector is indicating that a request '
@@ -137,19 +137,19 @@ class Interface(object):
                     'the maximum allowed size limit. The length of the '
                     'request content was %d.', len(data))
 
-            raise Interface.DiscardDataForRequest()
+            raise Client.DiscardDataForRequest()
 
         elif response.status in  (503, 504):
             _logger.warning('Data collector is unavailable.')
 
-            raise Interface.ServerIsUnavailable()
+            raise Client.ServerIsUnavailable()
 
         elif response.status != 200:
             _logger.warning('An unexpected HTTP response was received '
                     'from the data collector of %r. The payload for '
                     'the request was %r.', respnse.status, payload)
 
-            raise Interface.DiscardDataForRequest()
+            raise Client.DiscardDataForRequest()
 
         try:
             if PY3:
@@ -161,14 +161,14 @@ class Interface(object):
             _logger.exception('Error decoding data for JSON payload '
                     'with payload of %r.', content)
 
-            raise Interface.DiscardDataForRequest(str(exc))
+            raise Client.DiscardDataForRequest(str(exc))
 
         if 'status' in result:
             return result['status']
 
         error_message = result['error']
 
-        raise Interface.DiscardDataForRequest(error_message)
+        raise Client.DiscardDataForRequest(error_message)
 
     def send_metrics(self, name, guid, version, duration, metrics):
         agent = {}
