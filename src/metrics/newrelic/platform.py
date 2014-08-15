@@ -147,7 +147,7 @@ class Client(object):
         elif response.status != 200:
             _logger.warning('An unexpected HTTP response was received '
                     'from the data collector of %r. The payload for '
-                    'the request was %r.', respnse.status, payload)
+                    'the request was %r.', response.status, payload)
 
             raise Client.DiscardDataForRequest()
 
