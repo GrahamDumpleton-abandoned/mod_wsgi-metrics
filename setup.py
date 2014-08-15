@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup_kwargs = dict(
     name = 'mod_wsgi-metrics',
-    version = '1.1.0',
+    version = '1.2.0',
     description = 'Metrics package for Apache/mod_wsgi.',
     author = 'Graham Dumpleton',
     author_email = 'Graham.Dumpleton@gmail.com',
