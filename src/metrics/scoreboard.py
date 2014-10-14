@@ -503,6 +503,9 @@ class Scoreboard(object):
 
                     continue
 
+                except NotImplementedError:
+                    pass
+
                 except Exception:
                     raise
 
