@@ -71,6 +71,13 @@ def configuration_settings(app_name=None, license_key=None,
             license_key = os.environ.get('NEW_RELIC_LICENSE_KEY', None)
             license_key = option('license_key', default=license_key)
 
+    else:
+        if app_name is None:
+            app_name = os.environ.get('NEW_RELIC_APP_NAME', None)
+
+        if license_key is None:
+            license_key = os.environ.get('NEW_RELIC_LICENSE_KEY', None)
+
     if app_name is not None:
         app_name = app_name.split(';')[0].strip()
 
