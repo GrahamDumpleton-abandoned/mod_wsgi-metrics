@@ -2,6 +2,10 @@
 MOD_WSGI (METRICS)
 ==================
 
+**Note that this package is no longer being maintained at this point. At
+some point it will be done over to use a different mechanism for
+visualising data so as not to depend on a separate service.**
+
 The mod_wsgi-metrics package is an add on package for Apache/mod_wsgi. It
 generates metric information about the run time performance of Apache and
 mod_wsgi. At least mod_wsgi version 4.2.0 is required.
@@ -20,11 +24,6 @@ your Apache/mod_wsgi installation for best performance.
 The New Relic Platform is a free feature of New Relic and so in order to
 use this plugin for Apache/mod_wsgi, you do not need to have a paid account
 for New Relic.
-
-Even if using the Python agent for New Relic, New Relic provides a free
-Lite tier for it, so there is no excuse for not using both the Python agent
-and this plugin to give you that extra visibility. Learn about what your
-Python web application is really doing. [1]_
 
 Using the plugin with a mod_wsgi express installation
 -----------------------------------------------------
@@ -122,8 +121,3 @@ group created with using the ``WSGIDaemonProcess`` directive.
 4. Restart Apache. Within the New Relic UI you should automatically see
 a new entry appear in the left hand navigation bar labelled 'mod_wsgi'. The
 reported data will then appear under the application name used.
-
-.. [1] Disclaimer: I work for New Relic and am the primary developer of
-       the Python agent. So of course it is awesome. The work I do on
-       this mod_wsgi plugin for the New Relic platform is independent of
-       any work I do for New Relic and is done on my own time though. :-)
